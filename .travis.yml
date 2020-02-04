@@ -7,7 +7,7 @@ script:
   - docker run sangeetha/multi-container npm test -- --coverage
 after_success:
   - docker build -t sangeetha/multi-client ./client
-  - docket build -t sangeetha/multi-nginx ./nginx
+  - docker build -t sangeetha/multi-nginx ./nginx
   - docker build -t sangeetha/multi-server ./server
   - docker build -t sangeetha/multi-worker ./worker
 
