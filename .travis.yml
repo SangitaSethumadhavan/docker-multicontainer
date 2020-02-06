@@ -15,8 +15,8 @@ after_success:
   #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -- password-stdin
   - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
   #Take those images and push to docker hub
-  - docker push sangeetha/multi-client
-  - docker push sangeetha/multi-nginx
-  - docker push sangeetha/multi-server
-  - docker push sangeetha/multi-worker
+  - docker push sanuz/sangeetha/multi-client
+  - docker push sanuz/sangeetha/multi-nginx
+  - docker push sanuz/sangeetha/multi-server
+  - docker push sanuz/sangeetha/multi-worker
   
