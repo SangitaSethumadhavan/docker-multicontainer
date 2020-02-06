@@ -11,16 +11,15 @@ after_success:
   - docker build -t sangeetha/multi-server ./server
   - docker build -t sangeetha/multi-worker ./worker
 
-  #Log in to the docker CLI
-  #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -- password-stdin
+  #Log in to the docker CLI 
   - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
+
   #Take those images and push to docker hub
-  - docker tag $DOCKER_ID/sangeetha/multi-client
+  - docker tag sangeetha/multi-client $DOCKER_ID/sangeetha/multi-client
   - docker push $DOCKER_ID/sangeetha/multi-client
-  - docker tag $DOCKER_ID/sangeetha/multi-nginx
+  - docker tag sangeetha/multi-nginx $DOCKER_ID/sangeetha/multi-nginx
   - docker push $DOCKER_ID/sangeetha/multi-nginx
-  - docker tag $DOCKER_ID/sangeetha/multi-server
+  - docker tag sangeetha/multi-server $DOCKER_ID/sangeetha/multi-server
   - docker push $DOCKER_ID/sangeetha/multi-server
-  - docker tag $DOCKER_ID/sangeetha/multi-worker
+  - docker tag sangeetha/multi-worker $DOCKER_ID/sangeetha/multi-worker
   - docker push $DOCKER_ID/sangeetha/multi-worker
-  
