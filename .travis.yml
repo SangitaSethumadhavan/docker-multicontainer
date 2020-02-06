@@ -6,20 +6,21 @@ before_install:
 script:
   - docker run sangeetha/multi-container npm test -- --coverage
 after_success:
-  - docker build -t sangeetha/multi-client ./client
-  - docker build -t sangeetha/multi-nginx ./nginx
-  - docker build -t sangeetha/multi-server ./server
-  - docker build -t sangeetha/multi-worker ./worker
+  - docker login -u="$DOCKER_ID" -p="$DOCKER_PASSWORD"
 
-  #Log in to the docker CLI 
-  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
+  - docker build -t multi-client ./client
+  - docker build -t multi-nginx ./nginx
+  - docker build -t multi-server ./server
+  - docker build -t multi-worker ./worker	
 
-  #Take those images and push to docker hub
-  - docker tag sangeetha/multi-client $DOCKER_ID/sangeetha/multi-client
-  - docker push $DOCKER_ID/sangeetha/multi-client
-  - docker tag sangeetha/multi-nginx $DOCKER_ID/sangeetha/multi-nginx
-  - docker push $DOCKER_ID/sangeetha/multi-nginx
-  - docker tag sangeetha/multi-server $DOCKER_ID/sangeetha/multi-server
-  - docker push $DOCKER_ID/sangeetha/multi-server
-  - docker tag sangeetha/multi-worker $DOCKER_ID/sangeetha/multi-worker
-  - docker push $DOCKER_ID/sangeetha/multi-worker
+  - docker images
+
+  - docker tag multi-client $DOCKER_ID/multi-client
+  - docker tag multi-nginx $DOCKER_ID/multi-nginx
+  - docker tag multi-server $DOCKER_ID/multi-server
+  - docker tag multi-worker $DOCKER_ID/multi-worker
+
+  - docker push  $DOCKER_ID/multi-client
+  - docker push  $DOCKER_ID/multi-nginx
+  - docker push  $DOCKER_ID/multi-server
+  - docker push  $DOCKER_ID/multi-worker
